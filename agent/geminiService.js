@@ -42,7 +42,8 @@ function extractJsonFromText(text = "") {
 
 async function callGemini(prompt) {
   const apiKey = process.env.GEMINI_API_KEY;
-  const model = process.env.GEMINI_MODEL || "gemini-1.5-flash";
+  const rawModel = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+  const model = rawModel.replace(/^models\//, "");
   const allowMockGemini = String(process.env.ALLOW_MOCK_GEMINI || "false").toLowerCase() === "true";
 
   if (!apiKey) {
